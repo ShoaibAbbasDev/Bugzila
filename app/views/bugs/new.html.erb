@@ -1,0 +1,17 @@
+<p class='h2 text-center m-3'>
+  Create Bug
+</p>
+<% if @bugs.errors.any? %>
+  <div id="error_explanation">
+    <h2>
+      <%= pluralize(@bugs.errors.count, "error") %>
+      prohibited this record from being saved:
+    </h2>
+    <ul class= 'text-danger'>
+      <% @bugs.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+<%= render partial: 'form', locals: {project: @project, bugs: @bugs} %>

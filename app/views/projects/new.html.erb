@@ -1,0 +1,14 @@
+<h2 class= 'text-center h2 m-5'>Add projects</h2>
+  <% if @project.errors.any?%>
+    <h2>
+      Errors
+    </h2>
+    <ul>
+      <% @project.errors.full_messages.each do |message| %>
+        <li class= 'alert-danger'>
+          <%= message %>
+        </li>
+      <%end%>
+    </ul>
+  <%end%>
+<%= render partial: 'form', locals: {project: @project} %>

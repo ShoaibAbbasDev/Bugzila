@@ -1,0 +1,74 @@
+<p class= 'h3 text-center' > Developers </p>
+<table class= 'table'>
+   <tr>
+      <th  scope="col">
+         User Email
+      </th>
+      <th  scope="col">
+         User Name
+      </th>
+      <th  scope="col">
+         Role
+      </th>
+      <th scope="colspan text-center">
+         Operations
+      </th>
+   </tr>
+   <% @project.project_details.each do |project_detail| %>
+         <tr scope="row">
+            <% if project_detail.user.role == 'Developer' %>
+               <td>
+                  <%= project_detail.user.email %>
+               </td>
+               <td>
+                  <%= project_detail.user.name %>
+               </td>
+               <td>
+                  <%= project_detail.user.role %>
+               </td>
+               <% if current_user.role == 'Manager' %>
+                  <td>
+                     <%= link_to 'Remove', destroy_user_path(project_detail.id),method: :delete, class: 'btn btn-danger'%>
+                  </td>
+               <%end%>
+            <%end%>
+         </tr>
+   <% end %>
+</table>
+<p class= 'h3 text-center' > QA </p>
+<table class= 'table'>
+   <tr>
+      <th  scope="col">
+         User Email
+      </th>
+      <th  scope="col">
+         User Name
+      </th>
+      <th  scope="col">
+         Role
+      </th>
+      <th scope="colspan text-center">
+         Operations
+      </th>
+   </tr>
+   <% @project.project_details.each do |project_detail| %>
+      <tr scope="row">
+         <% if  project_detail.user.role == 'QA' %>
+            <td>
+               <%= project_detail.user.email %>
+            </td>
+            <td>
+               <%= project_detail.user.name %>
+            </td>
+            <td>
+               <%= project_detail.user.role %>
+            </td>
+            <% if current_user.role == 'Manager' %>
+               <td>
+                  <%= link_to 'Remove', destroy_user_path(project_detail.id),method: :delete, class: 'btn btn-danger'%>
+               </td>
+            <%end%>
+         <%end%>
+      </tr>
+   <% end %>
+</table>

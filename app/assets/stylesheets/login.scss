@@ -1,0 +1,13 @@
+@mixin fields {
+    display: flexbox;
+}
+
+.login-page {
+    border: 1px solid black;
+    min-width: 500px;
+    min-height: 500px;
+    position: absolute;
+    padding: 5px;
+    top: 20%;
+    left: 35%;
+}

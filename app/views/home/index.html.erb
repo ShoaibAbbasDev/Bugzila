@@ -1,0 +1,56 @@
+<div class="pt-5 ">
+  <div class="row">
+    <% if current_user.role == 'Manager' %>
+      <div class="col-md-3 m-1">
+         <%= link_to new_project_path do %>
+            <div class='card'>
+               <div class='card-body container text-center bg-primary'>
+                     <i class='fa text-light fa-plus fa-6x view overlay zoom' aria-hidden='true'></i>
+                     <h5 class='text-light'>
+                        Create New Project
+                     </h5>
+               </div>
+          </div>
+         <% end %>
+      </div>
+    <%end%>
+      <% current_user.projects.each do |project| %>
+
+         <% if project.status == 'Active' %>
+              <div class="col-md-3 bg-light m-1 pt-2 bg-light ">
+                <%= link_to  project_path(project.id), class: "text-decoration-none text-dark" do %>
+                 <div class="d-flex justify-content-between">
+                    <h4>
+                       <%= project.name %>
+                    </h4>
+                    <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                 </div>
+                 <div>
+                    <p>
+                       <%= project.description %>
+                    </p>
+                 </div>
+                 <div>
+                    <p>
+                       <%= find_project_bugs(project)%> Bugs
+                    </p>
+                 </div>
+                 <div class="d-flex justify-content-between">
+                    <div>
+                       <%= project.created_at %>
+                    </div>
+                    <div class = 'text-danger'>
+                       <%= project.due_date %>
+                    </div>
+                   <div>
+                       <i class="fa fa-circle" aria-hidden="true"></i>
+                    </div>
+                 </div>
+                 <%end%>
+              </div>
+
+         <%end%>
+      <% end %>
+  </div>
+</div>
+

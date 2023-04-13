@@ -1,0 +1,23 @@
+<%= form_for [project ,bugs] do |bug| %>
+  <form>
+    <div class="container">
+      <%= bug.label :title, "Title: " %>
+        <%= bug.text_field :title, class: 'form-control w-50 m-2'  %>
+        <%= bug.label :description, "Description: " %>
+        <%= bug.text_area :description, class: 'form-control w-50 m-2'  %>
+        <%= bug.label :bug_image, "Bug Image (.png / .jpg)" %>
+        <%= bug.file_field :bug_image, class: 'form-control-file w-50 m-2' %>
+        <%= bug.label :bug_type, "Type: " %>
+        <%= bug.select :bug_type, options_for_select({ Feature: 'Feature', Bug: 'Bug' }), {}, class: "form-control w-50 m-2"  %>
+        <%= bug.label :status, "Status: " %>
+        <%= bug.select :status, options_for_select({ New: 'New', Started: 'Started', Completed: 'Completed' }), {}, class: "form-control w-50 m-2"  %>
+        <%= bug.label :deadline, "Deadline" %>
+        <%= bug.date_field :deadline , class: 'form-control-file w-50 m-2' %>
+        <%= bug.hidden_field :user_id, value: current_user.id %>
+        <%= link_to '<- Back', project_bugs_path(project.id), class: "btn btn-primary" %>
+
+        <%= bug.submit class: "btn btn-primary" %>
+    </div>
+  </form>
+<% end %>
+

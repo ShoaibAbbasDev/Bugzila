@@ -1,0 +1,49 @@
+<% flash.each do |type, msg| %>
+  <div class="alert alert-<%= type %>">
+    <%= msg %>
+  </div>
+<% end %>
+<table class = 'table'>
+   <tr>
+      <th scope="col">
+         Porject Name
+      </th>
+      <th scope="col">
+         Status
+      </th>
+      <th scope="col">
+         Deadline
+      </th>
+      <td colspan="5" class='text-center'>Operations</td>
+   </tr>
+   <% @projects.each do |project| %>
+      <tr scope="row">
+         <td>
+            <%= project.name %>
+         </td>
+         <td>
+            <%= project.status %>
+         </td>
+         <td>
+             <%= project.due_date %>
+         </td>
+         <td>
+            <%= link_to 'Show', project_path(project.id), class: 'btn btn-info' %>
+         </td>
+         <% if current_user.role == 'Manager' %>
+            <td>
+               <%= link_to 'Edit', edit_project_path(project), class: 'btn btn-success' %>
+            </td>
+            <td>
+               <%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+            </td>
+            <td>
+               <%= link_to 'Add Devs / QA to project', project_users_path(project.id), class: 'btn btn-primary' %>
+            </td>
+         <% end %>
+         <td>
+            <%= link_to 'Bugs', project_bugs_path(project.id), class: 'btn btn-dark' %>
+         </td>
+      </tr>
+   <% end %>
+</table>

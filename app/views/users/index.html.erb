@@ -1,0 +1,38 @@
+<% flash.each do |type, msg| %>
+  <div class="alert alert-<%= type %>">
+    <%= msg %>
+  </div>
+<% end %>
+<p class= 'h2 text-center m-3'>ALL Users</p>
+<table class = 'table'>
+  <tr>
+    <th  scope="col">
+      Email
+    </th>
+     <th  scope="col">
+      Name
+    </th>
+     <th  scope="col">
+      Role
+    </th>
+  </tr>
+  <% @users.each do |user| %>
+    <% if user.role == 'Developer' ||  user.role == 'QA' %>
+      <tr scope="row">
+        <td>
+          <%= user.email %>
+        </td>
+        <td>
+          <%= user.name %>
+        </td>
+        <td>
+          <%= user.role %>
+        </td>
+        <td>
+          <%= link_to 'Add', project_user_project_details_path(params[:project_id], user.id), method: :post , class: "btn btn-primary" %>
+        </td>
+      </tr>
+    <%end%>
+  <%end%>
+</table>
+<%= link_to '<- Back', projects_path, class: 'btn btn-primary m-3' %>

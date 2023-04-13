@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BugTracking</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <%= render 'share/navbar' %>
+    <% if alert != nil %>
+     <p class="alert alert-danger"><%= alert %></p>
+    <% end %>
+    <% if notice != nil %>
+     <p class="alert alert-info"><%= notice %></p>
+    <% end %>
+    <%= yield %>
+
+
+  </body>
+</html>

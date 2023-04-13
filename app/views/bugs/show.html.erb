@@ -1,0 +1,56 @@
+<p class = 'h3 text-center'>
+  Show Bug Details
+</p>
+<div class="row m-2">
+  <div class="container col-md-4" >
+    <h5>
+      Title
+    </h5>
+      <p>
+        <%= @bug.title %>
+      </p>
+    <h5>
+      Description
+    </h5>
+      <p>
+        <%= @bug.description %>
+      </p>
+      <h5>
+      Created By
+    </h5>
+      <p>
+        <%= @bug.user.name %> QA
+      </p>
+      <h5>
+      Assigned to
+    </h5>
+      <p>
+        <%=  @bug.bug_assign.blank? ? 'Not Assigned' : @bug.bug_assign %>
+      </p>
+  </div>
+  <div class="container col-md-4" >
+    <h5>
+      Bug Type
+    </h5>
+    <%= @bug.bug_type %>
+    <h5>
+      Status
+    </h5>
+    <%= @bug.status %>
+    <h5>
+      Deadline
+    </h5>
+    <%= @bug.deadline %>
+  </div>
+  <div class="container col-md-4" >
+    <%= image_tag @bug.bug_image, width: '400px' %>
+  </div>
+</div>
+<%= link_to '<- Back', project_bugs_path(@bug.project_id), class: 'btn btn-primary' %>
+<% if current_user.role == 'Developer' %>
+  <% if current_user.name == @bug.bug_assign && @bug.completion_status == false %>
+    <%= link_to 'Mark as completed', project_bug_mark_complete_path( @bug.project_id , @bug.id), method: :put, class: 'btn btn-primary' %>
+  <% end %>
+<% end %>
+
+

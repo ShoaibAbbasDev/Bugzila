@@ -1,0 +1,72 @@
+<% if current_user.role == 'QA' %>
+  <%= link_to 'Add Bug', new_project_bug_path, class: 'btn btn-primary mt-3 ml-3 mb-2' %>
+<% end %>
+
+<% flash.each do |type, msg| %>
+  <div class="alert alert-<%= type %>">
+    <%= msg %>
+  </div>
+<% end %>
+<table class = 'table'>
+  <tr>
+    <th scope= 'col'>
+      Title
+    </th>
+    <th scope= 'col'>
+      Status
+    </th>
+    <th scope= 'col'>
+      Deadline
+    </th>
+    <th scope= 'col'>
+      Bug
+    </th>
+    <th scope= 'col'>
+      Completion Status
+    </th>
+    <th scope= 'col'>
+      Assignment
+    </th>
+    <th scope='colspan'>
+    </td>
+  </tr>
+  <% @bugs.each do |bug| %>
+    <tr  scope= 'row'>
+      <td>
+        <%= bug.title %>
+      </td>
+      <td>
+        <%= bug.status %>
+      </td>
+      <td>
+        <%= bug.deadline %>
+      </td>
+      <td>
+        <%= image_tag bug.bug_image, width: '100px' %>
+      </td>
+      <td>
+        <% if bug.completion_status == true %>
+          <i class = 'fa fa-check text-success'></i>
+          <% else %>
+             <i class = 'fa fa-check'></i>
+        <% end %>
+      </td>
+      <td>
+        <% if current_user.role == 'Manager' || current_user.role == 'QA'  %>
+          <%=  bug.bug_assign.blank? ? 'Not Assigned' : 'Assigned' %>
+        <% end %>
+        <% if current_user.role == 'Developer'%>
+          <% if bug.bug_assign.blank? %>
+            <%= link_to 'Bug Assignment', project_bug_bug_assignment_path(bug.project_id, bug.id), method: :put, class: 'btn btn-primary' %>
+            <% else %>
+              Assigned
+          <% end %>
+        <% end %>
+
+      </td>
+      <td>
+      <%= link_to 'Show', project_bug_path(params[:project_id], bug.id), class: 'btn btn-info' %>
+      </td>
+    </tr>
+  <% end %>
+</table>

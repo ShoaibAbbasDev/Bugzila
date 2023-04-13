@@ -1,0 +1,18 @@
+development:
+  cloud_name: devsinc-dev
+  api_key: '536165945778963'
+  api_secret: dB4CKws90ohW4rK7vC-TKtvk9nw
+  enhance_image_tag: true
+  static_file_support: false
+production:
+  cloud_name: devsinc-dev
+  api_key: '536165945778963'
+  api_secret: dB4CKws90ohW4rK7vC-TKtvk9nw
+  enhance_image_tag: true
+  static_file_support: true
+test:
+  cloud_name: devsinc-dev
+  api_key: '536165945778963'
+  api_secret: dB4CKws90ohW4rK7vC-TKtvk9nw
+  enhance_image_tag: true
+  static_file_support: false

@@ -1,0 +1,17 @@
+<%= form_for project do |f| %>
+<form>
+  <div class="container">
+    <%= f.label :name, "Name:" %>
+    <%= f.text_field :name, class: 'form-control w-50 m-2' %>
+    <%= f.label :description, "Description:" %>
+    <%= f.text_area :description, class: 'form-control w-50 m-2'  %>
+    <%= f.label :status, "Status: " %>
+    <%= f.select :status, options_for_select({Active: 'Active', Completed: 'Completed', Cancled: 'Cancled'}), {}, class: "form-control w-50 m-2" %>
+
+    <%= f.label :due_date, "Due Date" %>
+    <%= f.date_field :due_date, class: 'form-control w-50 m-2' %>
+    <%= link_to '<- Back', projects_path, class: "btn btn-primary" %>
+    <%= f.submit class: "btn btn-primary" %>
+  <div>
+</form>
+<% end %>
